@@ -1,0 +1,96 @@
+/* Geral */
+.header {
+  background-color: white;
+  display: flex;
+  justify-content: center; /* Centraliza todos os itens horizontalmente */
+  align-items: center; /* Centraliza todos os itens verticalmente */
+  padding: 0.75rem 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+}
+
+.header-button {
+  font-size: 0.875rem; /* Diminui o tamanho da fonte */ 
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between; /* Espaço entre logo, menu e botão */
+  align-items: center; /* Alinha verticalmente os itens */
+  width: 100%;
+  max-width: 1200px; /* Limita a largura máxima */
+  gap: 1rem;
+}
+
+.header-logo {
+  max-width: 120px; /* Ajusta o tamanho do logo */
+}
+
+.header-nav {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-nav a {
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  text-align: center;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+
+
+/* Mobile specific styles */
+@media (max-width: 639px) {
+  .header {
+    padding: 0.5rem 1rem;
+  }
+
+  .header-container {
+    justify-content: center; /* Centraliza os itens */
+    align-items: center; /* Alinha verticalmente os itens */
+    gap: 1rem;
+  }
+
+  .header-nav {
+    display: none; /* Esconde o menu por padrão */
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 60px;
+    left: 35%;
+    transform: translateX(-50%);
+    width: 45%;
+    background: rgba(256, 256, 256, 0.8);
+    border-radius: 12px;
+    z-index: 999;
+    backdrop-filter: blur(2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .header-nav.open {
+    display: flex; /* Exibe o menu quando a classe 'open' for aplicada */
+  }
+
+  .header-nav a {
+    font-size: 0.85rem;
+    padding: 0.1rem 0.1rem;
+  }
+
+  .header-button {
+    font-size: 0.7rem; /* Diminui o tamanho da fonte */
+    padding: 0.5rem 1rem;
+    max-width: 140px;
+    width: auto;
+    text-align: center;
+    
+  }
+}

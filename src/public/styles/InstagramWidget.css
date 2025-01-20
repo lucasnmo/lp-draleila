@@ -1,0 +1,22 @@
+/* Estilo para os itens do carrossel */
+.tb_hs_image_wrap_in {
+    border: 2px solid #000066; /* Borda de 2px com a cor roxa */
+    border-radius: 8px;        /* Bordas arredondadas */
+    
+  }
+  
+  /* Garantir que as imagens também tenham bordas arredondadas */
+  .tb_hs_image_wrap_in img {
+    border-radius: 8px; /* Bordas arredondadas nas imagens */
+  }
+
+  .tb_hs_arrow {
+    display: none !important; /* Forçar a remoção com !important */
+  }
+
+ .tagembed-widget {
+  width: 70%;
+  maxWidth: "100%";
+  height: "700px"; /* Ajuste a altura conforme necessário */
+  margin: "0 auto" /* Centraliza o widget */
+  }

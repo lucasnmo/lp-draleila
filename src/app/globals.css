@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import '~slick-carousel/slick/slick.css';
+@import '~slick-carousel/slick/slick-theme.css';
+@import 'animate.css/animate.min.css';
+
+
+
+
+@font-face {
+  font-family: 'Helvetica';
+  src: url('../public/fonts/HelveticaNeueThin.otf') format('opentype');
+  font-weight: 100; /* Thin */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Helvetica';
+  src: url('../public/fonts/HelveticaNeueThinItalic.otf') format('opentype');
+  font-weight: 100; /* Thin Italic */
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Helvetica';
+  src: url('../public/fonts/HelveticaNeueMedium.otf') format('opentype');
+  font-weight: 500; /* Medium */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Helvetica';
+  src: url('../public/fonts/HelveticaNeueBold.otf') format('opentype');
+  font-weight: 700; /* Bold */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Helvetica';
+  src: url('../public/fonts/HelveticaNeueRoman.otf') format('opentype');
+  font-weight: 400; /* Regular (Roman) */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('../public/fonts/Montserrat-Thin.ttf') format('truetype'); /* Corrigido de 'opentype' para 'truetype' */
+  font-weight: 100; /* Thin */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('../public/fonts/Montserrat-Regular.ttf') format('truetype'); /* Corrigido de 'opentype' para 'truetype' */
+  font-weight: 400; /* Regular */
+  font-style: normal;
+}
+
+
+html {
+  font-family: 'Helvetica';
+}
+
+
+
+.text-shadow {
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4); /* Ajuste conforme necessário */
+}
+
+.text-shadow-light {
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15); /* Ajuste conforme necessário */
+}
+
+.text-shadow-heavy {
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* Ajuste conforme necessário */
+}
+
+
+
+
+
+
+
+
+/*NÃO ALTERNAR ENTRE O CURSOR DE SELECIONAR*/
+body {
+  cursor: default;
+}
+
+p, h1, h2, h3, h4, h5, h6, a, span {
+  cursor: default;
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+a {
+  cursor: pointer;
+}
+
+/* Estilizando a barra de rolagem */
+::-webkit-scrollbar {
+  width: 12px; /* Largura da barra de rolagem */
+}
+
+/* Fundo da barra de rolagem */
+::-webkit-scrollbar-track {
+  background: #FFFF; 
+}
+
+/* Barra de rolagem */
+::-webkit-scrollbar-thumb {
+  background-color: #00298f; /* Cor verde-primário */
+  border-radius: 6px; /* Bordas arredondadas */
+  border: 2px solid #FFFF; /* Cor de fundo azul-marinho para criar um espaço ao redor da barra */
+}
+
+/* Estilizando a barra de rolagem ao passar o mouse */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #00298f ; /* Um tom ligeiramente mais escuro de verde ao passar o mouse */
+}
+
+
+//EFEITO BRILHO CURSOR
+
+.trail-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.sparkle {
+  position: absolute;
+  width: 1.5px; /* Menor tamanho da faísca */
+  height: 1.5px; /* Menor tamanho da faísca */
+  background: #FFD700;
+  border-radius: 50%;
+  box-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700;
+  pointer-events: none;
+  animation: sparkle 0.5s ease-out forwards;
+  z-index: 500
+}
+
+@keyframes sparkle {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5); /* Menor escala final */
+    opacity: 0;
+  }
+}
+
+
+
+
+//EFEITO DE ESCURECER OS LADOS
+.vignette {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0.85) 95%);
+  pointer-events: none;
+  z-index: 3;
+}
+
+
+
+
+//SOMBRA NO TEXTO PRA DESTACAR DO BG
+.text-shadow-md {
+  text-shadow: 12px 12px 24px rgba(0, 0, 0, 1);
+}
