@@ -61,7 +61,7 @@ const TestimonialsCarousel = () => {
         }}
       ></div>
 
-      <div className="w-[80%] max-w-4xl mx-auto px-4 relative z-20 py-0">
+      <div className="w-[65%] mx-auto px-4 relative z-20 py-0">
         <div
           className="w-2/3 h-[2px] mx-auto mb-12"
           style={{
