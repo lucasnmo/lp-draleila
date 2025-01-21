@@ -1,167 +1,191 @@
 "use client";
-import React, { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
-import "swiper/css";
-import Image, { StaticImageData } from "next/image"; // Importing StaticImageData
-import print1 from "../public/assets/carrossel_testimonials/test1.jpg";
-import print2 from "../public/assets/carrossel_testimonials/test2.jpg";
-import print3 from "../public/assets/carrossel_testimonials/test3.jpg";
-import print4 from "../public/assets/carrossel_testimonials/test4.jpg";
-import print5 from "../public/assets/carrossel_testimonials/test5.jpg";
-import print6 from "../public/assets/carrossel_testimonials/test6.jpg";
-import print7 from "../public/assets/carrossel_testimonials/test.jpg";
+import { useState } from "react";
+import Image, { StaticImageData } from "next/image";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import bgimage from "../public/assets/marmore2.webp";
+import "../app/globals.css";
 
-// Defining the carousel images
-const prints: (string | StaticImageData)[] = [
-  print1,
-  print2,
-  print3,
-  print4,
-  print5,
-  print6,
-  print7,
-];
+// Imagens
+import preenchimento from "../public/assets/carrossel/preenchimento.jpeg";
+import botox from "../public/assets/carrossel/botox.jpeg";
+import preechimentoqueixo from "../public/assets/carrossel/preechimentoqueixo.jpeg";
+import bigodechines from "../public/assets/carrossel/bigodechines.jpg";
+import botox2 from "../public/assets/carrossel/botox2.jpeg";
+import bigodechines2 from "../public/assets/carrossel/bigodechines2.jpeg";
+import botox3 from "../public/assets/carrossel/botox3.jpeg";
+import espaco1 from "../public/assets/carrossel/espaco1.jpg";
+import espaco2 from "../public/assets/carrossel/espaco2.jpg";
+import espaco3 from "../public/assets/carrossel/espaco3.jpg";
+import espaco4 from "../public/assets/carrossel/espaco4.jpg";
+import espaco5 from "../public/assets/carrossel/espaco5.jpg";
+import espaco6 from "../public/assets/carrossel/espaco6.jpg";
+import espaco7 from "../public/assets/carrossel/espaco7.jpg";
 
-const TestimonialsCarousel = () => {
+export function SectionCarousel() {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.3,
   });
 
-  const { ref: buttonRef, inView: buttonInView } = useInView({
-    triggerOnce: true,
-    threshold: 0.5,
-  });
-
-  // Adjust the selectedImage state type to accept both string and StaticImageData
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState<string | StaticImageData>(
-    prints[0]
-  ); // Initialize with a valid image
+  const [selectedImage, setSelectedImage] = useState<StaticImageData>(espaco1); // Definir tipo StaticImageData
 
-  const handleImageClick = (image: string | StaticImageData) => {
-    setSelectedImage(image);
+  const handleImageClick = (image: StaticImageData) => {
+    setSelectedImage(image); // Garantir que o tipo seja StaticImageData
     setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    setSelectedImage(prints[0]); // Reset to the first image when closing
   };
 
-  // Function to close the modal when clicking outside the image
   const handleModalClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
       handleCloseModal();
     }
   };
 
-  return (
-    <section
-      ref={ref}
-      className="text-white flex justify-center relative overflow-hidden"
-    >
-      <div className="w-[65%]  mx-auto px-4 relative z-20 py-0">
-        <div
-          className="w-2/3 h-[2px] mx-auto mb-12"
-          style={{
-            background:
-              "linear-gradient(to right, transparent, #FFEBB5, #FFEBB5, transparent)",
-          }}
-        ></div>
-        <h2 className="text-4xl text-shadow-light text-center text-azul-escuro uppercase font-montserrat mb-8">
-          CLIENTES SATISFEITOS!
-        </h2>
-        <Swiper
-          modules={[Autoplay]}
-          autoplay={{ delay: 4200 }}
-          loop
-          speed={1000}
-          spaceBetween={30}
-          slidesPerView={1}
-          breakpoints={{
-            640: { slidesPerView: 1 },
-            768: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
-          }}
-          className="testimonial-swiper mb-12"
-        >
-          {prints.map((print, index) => (
-            <SwiperSlide key={index}>
-              <motion.div
-                className="flex justify-center items-center"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={
-                  inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
-                }
-                transition={{
-                  duration: 0.8,
-                  ease: "easeInOut",
-                  delay: index * 0.2,
-                }}
-              >
-                <Image
-                  src={print}
-                  alt={`Print ${index + 1}`}
-                  width={350}
-                  height={460}
-                  className="rounded-lg  border border-azul-escuro cursor-pointer"
-                  onClick={() => handleImageClick(print)}
-                />
-              </motion.div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+  const settings = {
+    centerMode: true,
+    centerPadding: "6px",
+    slidesToShow: 3,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    infinite: true,
+    speed: 750,
+    slidesToScroll: 1,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          centerMode: true,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          centerMode: false,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          centerPadding: "0px",
+          centerMode: true,
+        },
+      },
+    ],
+  };
 
-        <div className="flex justify-center mt-8">
-          <motion.a
-            ref={buttonRef}
-            href="https://wa.me/5511999999999"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="flex justify-center text-shadow-light items-center shadow-lg bg-azul-escuro text-white py-3 px-6 border-2 border-azul-escuro rounded-lg text-xl font-montserrat font-semibold transition-colors mb-10"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: buttonInView ? 1 : 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            AGENDE AGORA
-          </motion.a>
-        </div>
+  const items: { src: StaticImageData; alt: string }[] = [
+    { src: espaco5, alt: "Espaço" },
+    { src: preenchimento, alt: "Preenchimento" },
+    { src: espaco1, alt: "Espaço" },
+    { src: botox, alt: "Botox" },
+    { src: espaco3, alt: "Espaço" },
+    { src: preechimentoqueixo, alt: "Preenchimento queixo" },
+    { src: espaco4, alt: "Espaço" },
+    { src: bigodechines, alt: "Bigode Chinês" },
+    { src: espaco6, alt: "Espaço" },
+    { src: botox2, alt: "Botox" },
+    { src: espaco7, alt: "Espaço" },
+    { src: bigodechines2, alt: "Bigode Chinês" },
+    { src: botox3, alt: "Botox" },
+  ];
+
+  return (
+    <section className="relative" id="carrossel">
+      <div
+        className="w-2/3 h-[2px] mx-auto mb-8"
+        style={{
+          background:
+            "linear-gradient(to right, transparent, #FFEBB5, #FFEBB5, #FFEBB5, #FFEBB5, #FFEBB5, transparent)",
+        }}
+      ></div>
+      <div ref={ref} className="py-8 px-4 md:px-8 relative overflow-hidden">
+        <motion.div
+          className="max-w-7xl mx-auto"
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={{
+            hidden: { opacity: 0, y: 50 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          transition={{ duration: 2, ease: "easeInOut" }}
+        >
+          <h1 className="text-center text-azul-escuro text-4xl mb-10 font-montserrat uppercase text-shadow-light">
+            RESULTADOS E ESPAÇO EXCLUSIVO
+          </h1>
+          <div className="mx-auto w-full sm:w-[90%] relative">
+            <Slider {...settings}>
+              {items.map((item, index) => (
+                <motion.div
+                  key={index}
+                  className="relative carousel-item mb-12"
+                  initial="hidden"
+                  animate={inView ? "visible" : "hidden"}
+                  variants={{
+                    hidden: { opacity: 0, scale: 0.8 },
+                    visible: { opacity: 1, scale: 1 },
+                  }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                >
+                  <div className="relative mx-4 h-[350px] w-[350px] md:h-[350px] md:w-[350px] sm:h-[350px] sm:w-[350px] rounded-lg overflow-hidden border border-[#000066] shadow-xl">
+                    <Image
+                      src={item.src}
+                      alt={item.alt}
+                      layout="fill"
+                      objectFit="cover"
+                      className="rounded-lg cursor-pointer"
+                      onClick={() => handleImageClick(item.src)}
+                    />
+                  </div>
+                </motion.div>
+              ))}
+            </Slider>
+          </div>
+        </motion.div>
       </div>
 
-      {/* Image Modal */}
       {isModalOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
-          onClick={handleModalClick} // Close the modal when clicking outside
+          onClick={handleModalClick}
         >
-          <div className="relative max-w-[90%] max-h-[90vh]">
+          <div className="relative">
             <Image
               src={selectedImage}
-              alt="Expanded Image"
-              layout="responsive"
-              width={1200} // largura total da imagem
-              height={1600} // altura total da imagem
-              className="rounded-lg shadow-2xl object-contain" // Garantir que a imagem mantenha a proporção
+              alt="Imagem Expansiva"
+              width={800}
+              height={1066}
+              className="rounded-lg shadow-2xl max-w-[30vw] max-h-[85vh]"
             />
             <button
               onClick={handleCloseModal}
               className="absolute top-0 right-0 p-4 text-white text-3xl font-bold"
             >
-              &times;
+              X
             </button>
           </div>
         </div>
       )}
-      
+
+      <div
+        className="w-2/3 h-[1px] mx-auto mb-0"
+        style={{
+          background:
+            "linear-gradient(to right, transparent, #FFEBB5, #FFEBB5, #FFEBB5, #FFEBB5, #FFEBB5, transparent)",
+        }}
+      ></div>
     </section>
   );
-};
+}
 
-export default TestimonialsCarousel;
+export default SectionCarousel;

@@ -1,9 +1,9 @@
-'use client';
+"use client";
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
-import Image, { StaticImageData } from "next/image";  // Importando StaticImageData
+import Image, { StaticImageData } from "next/image"; // Importando StaticImageData
 import print1 from "../public/assets/carrossel_testimonials/test1.jpg";
 import print2 from "../public/assets/carrossel_testimonials/test2.jpg";
 import print3 from "../public/assets/carrossel_testimonials/test3.jpg";
@@ -31,7 +31,9 @@ const TestimonialsCarousel = () => {
 
   // Ajustando o tipo de selectedImage para aceitar apenas string ou StaticImport
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState<string | StaticImageData>(prints[0]);  // Inicializa com uma imagem válida
+  const [selectedImage, setSelectedImage] = useState<string | StaticImageData>(
+    prints[0]
+  ); // Inicializa com uma imagem válida
 
   const handleImageClick = (image: string | StaticImageData) => {
     setSelectedImage(image);
@@ -51,7 +53,10 @@ const TestimonialsCarousel = () => {
   };
 
   return (
-    <section ref={ref} className="text-white flex justify-center relative overflow-hidden">
+    <section
+      ref={ref}
+      className="text-white flex justify-center relative overflow-hidden"
+    >
       <div
         className="absolute top-0 left-0 w-full min-h-[100vh] bg-cover bg-center z-0"
         style={{
@@ -91,8 +96,14 @@ const TestimonialsCarousel = () => {
               <motion.div
                 className="flex justify-center items-center"
                 initial={{ opacity: 0, scale: 0.8 }}
-                animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.8, ease: "easeInOut", delay: index * 0.2 }}
+                animate={
+                  inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
+                }
+                transition={{
+                  duration: 0.8,
+                  ease: "easeInOut",
+                  delay: index * 0.2,
+                }}
               >
                 <Image
                   src={print}
@@ -115,7 +126,7 @@ const TestimonialsCarousel = () => {
             rel="noopener noreferrer"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="flex justify-center text-shadow-light items-center shadow-lg bg-azul-escuro text-white py-3 px-6 border-2 border-azul-escuro rounded-lg text-xl font-montserrat font-semibold transition-colors mb-10"
+            className="flex justify-center items-center h-14 py-3 px-6 shadow-lg bg-azul-escuro text-white border-2 border-azul-escuro rounded-lg text-xl font-montserrat font-semibold transition-colors mb-10 leading-none"
             initial={{ opacity: 0 }}
             animate={{ opacity: buttonInView ? 1 : 0 }}
             transition={{ duration: 0.2 }}

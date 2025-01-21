@@ -102,7 +102,7 @@ const Header = () => {
 
         {/* Botão de Cadastro */}
         <motion.a
-          href="https://wa.me/5511991806637"
+          href="https://api.whatsapp.com/send?phone=5571999541070&text=Ol%C3%A1,%20quero%20saber%20mais%20sobre%20os%20tratamentos!!%20"
           target="_blank"
           rel="noopener noreferrer"
           whileHover={{ scale: 1.1 }}

@@ -60,7 +60,7 @@ const SectionHero = () => {
   };
 
   return (
-    <section className="relative h-screen flex justify-center items-center text-center p-6 overflow-hidden mt-12">
+    <section className="relative h-screen flex justify-center items-center text-center p-6 overflow-hidden mt-12 tracking-wider">
       {/* Elemento de fundo com posição absoluta */}
       <div
         className="absolute top-0 left-0 w-full h-full"
@@ -110,9 +110,7 @@ const SectionHero = () => {
           }}
           transition={{ duration: 1 }}
         >
-          <MyIcon />
           <span>Realço sua beleza com naturalidade e segurança</span>
-          <MyIcon />
         </motion.h2>
 
         {/* Título principal */}
@@ -147,7 +145,7 @@ const SectionHero = () => {
         <div className="flex flex-col justify-center items-center gap-4">
           <motion.a
             ref={buttonRef}
-            href=""
+            href="https://api.whatsapp.com/send?phone=5571999541070&text=Ol%C3%A1,%20quero%20saber%20mais%20sobre%20os%20tratamentos!!%20"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.1 }}

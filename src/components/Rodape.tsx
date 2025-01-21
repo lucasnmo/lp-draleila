@@ -16,11 +16,9 @@ export function Rodape() {
 
         {/* Informações de contato */}
         <div className="text-center mb-4">
-          <p className="mb-1 flex justify-center items-center gap-2">
-            <FaEnvelope /> <span className="font-semibold"><a href="">E-mail:</a></span> botolipsbr@gmail.com
-          </p>
+          
           <p className="flex justify-center items-center gap-2">
-            <FaPhone /> <span className="font-semibold">Telefone:</span> +55 (71) 99229-7253
+            <FaPhone /> <span className="font-semibold">Telefone:</span> +55 (71) 99954-1070
           </p>
         </div>
 

@@ -17,7 +17,7 @@ export default function WhatsAppButton() {
 
   // Função que redireciona para o WhatsApp
   const redirectToWhatsApp = () => {
-    const phoneNumber = "5571992297253"; // Coloque seu número de WhatsApp aqui
+    const phoneNumber = "5571999541070"; // Coloque seu número de WhatsApp aqui
     const message = "Olá, estou interessado em seus serviços!"; // Mensagem pré-definida
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank");

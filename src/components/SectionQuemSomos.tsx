@@ -31,7 +31,7 @@ const SectionQuemSomos = () => {
     >
       {/* Linha no topo da seção */}
       <div
-        className="absolute top-0 w-2/3 h-[2px] mx-auto mb-12"
+        className="absolute top-0 w-2/3 h-[1px] mx-auto mb-12"
         style={{
           background:
             "linear-gradient(to right, transparent, #FFEBB5, #FFEBB5, transparent)",
