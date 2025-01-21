@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import logo from "../public/assets/logo.svg";
+import logo from "../public/assets/logo2.png";
 import "../app/globals.css";
 import bgimage from "../public/assets/marmore2.webp";
 import { FaInstagram, FaFacebook, FaWhatsapp } from "react-icons/fa";
