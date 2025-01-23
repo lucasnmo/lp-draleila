@@ -82,14 +82,14 @@ export function SectionCarousel() {
 
   const items: { src: StaticImageData; alt: string; description: string }[] = [
     { src: preenchimento, alt: "Preenchimento", description: "Preenchimento Labial" },
+    { src: preechimentoqueixo, alt: "Preenchimento Queixo", description: "Botox" },
     { src: espaco1, alt: "Espaço", description: "Botox" },
     { src: botox, alt: "Botox", description: "Preenchimento Labial" },
-    { src: harmonizacao, alt: "Espaço", description: "Harmonização Facial" },
-    { src: preechimentoqueixo, alt: "Preenchimento Queixo", description: "Botox" },
     { src: bigodechines, alt: "Bigode Chinês", description: "Botox" },
+    { src: harmonizacao, alt: "Espaço", description: "Harmonização Facial" },
+    { src: botox3, alt: "Botox", description: "Harmonização Facial" },
     { src: botox2, alt: "Botox", description: "Botox" },
     { src: bigodechines2, alt: "Bigode Chinês", description: "Botox" },
-    { src: botox3, alt: "Botox", description: "Harmonização Facial" },
   ];
 
   return (
