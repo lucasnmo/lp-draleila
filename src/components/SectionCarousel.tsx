@@ -141,7 +141,7 @@ export function SectionCarousel() {
                   transition={{ duration: 0.5, ease: "easeOut" }}
                 >
                   {/* Imagem */}
-                  <div className="relative mx-4 h-[350px] w-[350px] md:h-[350px] md:w-[350px] sm:h-[350px] sm:w-[350px] rounded-lg overflow-hidden border border-[#000066] shadow-xl">
+                  <div className="relative mx-4 h-[350px] w-[350px] md:h-[350px] md:w-[350px] sm:h-[300px] sm:w-[300px] rounded-lg overflow-hidden border border-[#000066] shadow-xl">
                     <Image
                       src={item.src}
                       alt={item.alt}
@@ -151,6 +151,7 @@ export function SectionCarousel() {
                       onClick={() => handleImageClick(item.src)}
                     />
                   </div>
+
                   {/* Descrição */}
                   <div className="text-center mt-4">
                     <p className="text-azul-escuro font-montserrat font-semibold text-lg">
