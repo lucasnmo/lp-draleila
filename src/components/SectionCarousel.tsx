@@ -9,20 +9,17 @@ import { useInView } from "react-intersection-observer";
 import "../app/globals.css";
 
 // Imagens
-import preenchimento from "../public/assets/carrossel/preenchimento.jpeg";
-import botox from "../public/assets/carrossel/botox.jpeg";
-import preechimentoqueixo from "../public/assets/carrossel/preechimentoqueixo.jpeg";
-import bigodechines from "../public/assets/carrossel/bigodechines.jpg";
-import botox2 from "../public/assets/carrossel/botox2.jpeg";
-import bigodechines2 from "../public/assets/carrossel/bigodechines2.jpeg";
-import botox3 from "../public/assets/carrossel/botox3.jpeg";
-import espaco1 from "../public/assets/carrossel/espaco1.jpg";
-import espaco2 from "../public/assets/carrossel/espaco2.jpg";
-import espaco3 from "../public/assets/carrossel/espaco3.jpg";
-import espaco4 from "../public/assets/carrossel/espaco4.jpg";
-import espaco5 from "../public/assets/carrossel/espaco5.jpg";
-import espaco6 from "../public/assets/carrossel/espaco6.jpg";
-import espaco7 from "../public/assets/carrossel/espaco7.jpg";
+import preenchimento from "../public/assets/carrossel/preenchimento.jpg";
+import botox from "../public/assets/carrossel/preenchimento2.jpg";
+import preechimentoqueixo from "../public/assets/carrossel/harmonizacao1.jpg";
+import bigodechines from "../public/assets/carrossel/harmonizacao2.jpg";
+import botox2 from "../public/assets/carrossel/harmonizacao3.jpg";
+import bigodechines2 from "../public/assets/carrossel/botox.jpg";
+import botox3 from "../public/assets/carrossel/botox2.jpg";
+import espaco1 from "../public/assets/carrossel/botox3.jpg";
+import espaco2 from "../public/assets/carrossel/botox4.jpg";
+import espaco3 from "../public/assets/carrossel/botox5.jpg";
+
 
 export function SectionCarousel() {
   const { ref, inView } = useInView({
@@ -85,17 +82,13 @@ export function SectionCarousel() {
   };
 
   const items: { src: StaticImageData; alt: string }[] = [
-    { src: espaco5, alt: "Espaço" },
     { src: preenchimento, alt: "Preenchimento" },
     { src: espaco1, alt: "Espaço" },
     { src: botox, alt: "Botox" },
     { src: espaco3, alt: "Espaço" },
     { src: preechimentoqueixo, alt: "Preenchimento queixo" },
-    { src: espaco4, alt: "Espaço" },
     { src: bigodechines, alt: "Bigode Chinês" },
-    { src: espaco6, alt: "Espaço" },
     { src: botox2, alt: "Botox" },
-    { src: espaco7, alt: "Espaço" },
     { src: bigodechines2, alt: "Bigode Chinês" },
     { src: botox3, alt: "Botox" },
   ];
