@@ -1,8 +1,1 @@
 
-
-@media (max-width: 768px) {
-  .carousel-item {
-    height: 300px !important; /* ou o valor desejado */
-    width: 300px !important;
-  }
-}
