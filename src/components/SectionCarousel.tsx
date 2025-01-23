@@ -20,7 +20,6 @@ import espaco1 from "../public/assets/carrossel/botox3.jpg";
 import harmonizacao from "../public/assets/carrossel/harmonizacao.jpg";
 import harmonizacao4 from "../public/assets/carrossel/harmonizacao4.jpg";
 
-
 export function SectionCarousel() {
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -82,12 +81,19 @@ export function SectionCarousel() {
       },
     ],
   };
-  
 
   const items: { src: StaticImageData; alt: string; description: string }[] = [
-    { src: preenchimento, alt: "Preenchimento Labial", description: "Preenchimento Labial" },
+    {
+      src: preenchimento,
+      alt: "Preenchimento Labial",
+      description: "Preenchimento Labial",
+    },
     { src: preechimentoqueixo, alt: "Botox", description: "Botox" },
-    { src: harmonizacao4, alt: "Harmonização Facial", description: "Harmonização Facial" },
+    {
+      src: harmonizacao4,
+      alt: "Harmonização Facial",
+      description: "Harmonização Facial",
+    },
     { src: espaco1, alt: "Espaço", description: "Botox" },
     { src: botox, alt: "Botox", description: "Preenchimento Labial" },
     { src: bigodechines, alt: "Bigode Chinês", description: "Botox" },
@@ -121,39 +127,39 @@ export function SectionCarousel() {
             RESULTADOS E ESPAÇO EXCLUSIVO
           </h1>
           <div className="mx-auto w-full sm:w-[90%] relative">
-          <Slider {...settings}>
-        {items.map((item, index) => (
-          <motion.div
-            key={index}
-            className="relative carousel-item mb-12"
-            initial="hidden"
-            animate={inView ? "visible" : "hidden"}
-            variants={{
-              hidden: { opacity: 0, scale: 0.8 },
-              visible: { opacity: 1, scale: 1 },
-            }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-          >
-            {/* Imagem */}
-            <div className="relative mx-4 h-[350px] w-[350px] md:h-[350px] md:w-[350px] sm:h-[350px] sm:w-[350px] rounded-lg overflow-hidden border border-[#000066] shadow-xl">
-              <Image
-                src={item.src}
-                alt={item.alt}
-                layout="fill"
-                objectFit="cover"
-                className="rounded-lg cursor-pointer"
-                onClick={() => handleImageClick(item.src)}
-              />
-            </div>
-            {/* Descrição */}
-            <div className="text-center mt-4">
-              <p className="text-azul-escuro font-montserrat font-semibold text-lg">
-                {item.description}
-              </p>
-            </div>
-          </motion.div>
-        ))}
-      </Slider>
+            <Slider {...settings} className="gap-4">
+              {items.map((item, index) => (
+                <motion.div
+                  key={index}
+                  className="relative carousel-item mb-12"
+                  initial="hidden"
+                  animate={inView ? "visible" : "hidden"}
+                  variants={{
+                    hidden: { opacity: 0, scale: 0.8 },
+                    visible: { opacity: 1, scale: 1 },
+                  }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                >
+                  {/* Imagem */}
+                  <div className="relative mx-4 h-[350px] w-[350px] md:h-[350px] md:w-[350px] sm:h-[350px] sm:w-[350px] rounded-lg overflow-hidden border border-[#000066] shadow-xl">
+                    <Image
+                      src={item.src}
+                      alt={item.alt}
+                      layout="fill"
+                      objectFit="cover"
+                      className="rounded-lg cursor-pointer"
+                      onClick={() => handleImageClick(item.src)}
+                    />
+                  </div>
+                  {/* Descrição */}
+                  <div className="text-center mt-4">
+                    <p className="text-azul-escuro font-montserrat font-semibold text-lg">
+                      {item.description}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </Slider>
           </div>
         </motion.div>
       </div>
