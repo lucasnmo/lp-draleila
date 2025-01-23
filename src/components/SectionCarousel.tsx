@@ -68,6 +68,7 @@ export function SectionCarousel() {
         settings: {
           slidesToShow: 2,
           centerMode: false,
+          spaceBetween: 16, // Adiciona espaço entre os slides
         },
       },
       {
@@ -76,10 +77,12 @@ export function SectionCarousel() {
           slidesToShow: 1,
           centerPadding: "0px",
           centerMode: true,
+          spaceBetween: 16, // Espaço entre os slides
         },
       },
     ],
   };
+  
 
   const items: { src: StaticImageData; alt: string; description: string }[] = [
     { src: preenchimento, alt: "Preenchimento Labial", description: "Preenchimento Labial" },
