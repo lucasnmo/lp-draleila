@@ -17,8 +17,7 @@ import botox2 from "../public/assets/carrossel/harmonizacao3.jpg";
 import bigodechines2 from "../public/assets/carrossel/botox.jpg";
 import botox3 from "../public/assets/carrossel/botox2.jpg";
 import espaco1 from "../public/assets/carrossel/botox3.jpg";
-import espaco2 from "../public/assets/carrossel/botox4.jpg";
-import espaco3 from "../public/assets/carrossel/botox5.jpg";
+import harmonizacao from "../public/assets/carrossel/harmonizacao.jpg";
 
 
 export function SectionCarousel() {
@@ -81,16 +80,16 @@ export function SectionCarousel() {
     ],
   };
 
-  const items: { src: StaticImageData; alt: string }[] = [
-    { src: preenchimento, alt: "Preenchimento" },
-    { src: espaco1, alt: "Espaço" },
-    { src: botox, alt: "Botox" },
-    { src: espaco3, alt: "Espaço" },
-    { src: preechimentoqueixo, alt: "Preenchimento queixo" },
-    { src: bigodechines, alt: "Bigode Chinês" },
-    { src: botox2, alt: "Botox" },
-    { src: bigodechines2, alt: "Bigode Chinês" },
-    { src: botox3, alt: "Botox" },
+  const items: { src: StaticImageData; alt: string; description: string }[] = [
+    { src: preenchimento, alt: "Preenchimento", description: "Preenchimento Labial" },
+    { src: espaco1, alt: "Espaço", description: "Botox" },
+    { src: botox, alt: "Botox", description: "Preenchimento Labial" },
+    { src: harmonizacao, alt: "Espaço", description: "Harmonização Facial" },
+    { src: preechimentoqueixo, alt: "Preenchimento Queixo", description: "Botox" },
+    { src: bigodechines, alt: "Bigode Chinês", description: "Botox" },
+    { src: botox2, alt: "Botox", description: "Botox" },
+    { src: bigodechines2, alt: "Bigode Chinês", description: "Botox" },
+    { src: botox3, alt: "Botox", description: "Harmonização Facial" },
   ];
 
   return (
@@ -117,32 +116,39 @@ export function SectionCarousel() {
             RESULTADOS E ESPAÇO EXCLUSIVO
           </h1>
           <div className="mx-auto w-full sm:w-[90%] relative">
-            <Slider {...settings}>
-              {items.map((item, index) => (
-                <motion.div
-                  key={index}
-                  className="relative carousel-item mb-12"
-                  initial="hidden"
-                  animate={inView ? "visible" : "hidden"}
-                  variants={{
-                    hidden: { opacity: 0, scale: 0.8 },
-                    visible: { opacity: 1, scale: 1 },
-                  }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
-                >
-                  <div className="relative mx-4 h-[350px] w-[350px] md:h-[350px] md:w-[350px] sm:h-[350px] sm:w-[350px] rounded-lg overflow-hidden border border-[#000066] shadow-xl">
-                    <Image
-                      src={item.src}
-                      alt={item.alt}
-                      layout="fill"
-                      objectFit="cover"
-                      className="rounded-lg cursor-pointer"
-                      onClick={() => handleImageClick(item.src)}
-                    />
-                  </div>
-                </motion.div>
-              ))}
-            </Slider>
+          <Slider {...settings}>
+        {items.map((item, index) => (
+          <motion.div
+            key={index}
+            className="relative carousel-item mb-12"
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"}
+            variants={{
+              hidden: { opacity: 0, scale: 0.8 },
+              visible: { opacity: 1, scale: 1 },
+            }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+          >
+            {/* Imagem */}
+            <div className="relative mx-4 h-[350px] w-[350px] md:h-[350px] md:w-[350px] sm:h-[350px] sm:w-[350px] rounded-lg overflow-hidden border border-[#000066] shadow-xl">
+              <Image
+                src={item.src}
+                alt={item.alt}
+                layout="fill"
+                objectFit="cover"
+                className="rounded-lg cursor-pointer"
+                onClick={() => handleImageClick(item.src)}
+              />
+            </div>
+            {/* Descrição */}
+            <div className="text-center mt-4">
+              <p className="text-azul-escuro font-montserrat font-semibold text-lg">
+                {item.description}
+              </p>
+            </div>
+          </motion.div>
+        ))}
+      </Slider>
           </div>
         </motion.div>
       </div>
