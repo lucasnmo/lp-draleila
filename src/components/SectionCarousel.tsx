@@ -18,6 +18,7 @@ import bigodechines2 from "../public/assets/carrossel/botox.jpg";
 import botox3 from "../public/assets/carrossel/botox2.jpg";
 import espaco1 from "../public/assets/carrossel/botox3.jpg";
 import harmonizacao from "../public/assets/carrossel/harmonizacao.jpg";
+import harmonizacao4 from "../public/assets/carrossel/harmonizacao4.jpg";
 
 
 export function SectionCarousel() {
@@ -81,8 +82,9 @@ export function SectionCarousel() {
   };
 
   const items: { src: StaticImageData; alt: string; description: string }[] = [
-    { src: preenchimento, alt: "Preenchimento", description: "Preenchimento Labial" },
-    { src: preechimentoqueixo, alt: "Preenchimento Queixo", description: "Botox" },
+    { src: preenchimento, alt: "Preenchimento Labial", description: "Preenchimento Labial" },
+    { src: preechimentoqueixo, alt: "Botox", description: "Botox" },
+    { src: harmonizacao4, alt: "Harmonização Facial", description: "Harmonização Facial" },
     { src: espaco1, alt: "Espaço", description: "Botox" },
     { src: botox, alt: "Botox", description: "Preenchimento Labial" },
     { src: bigodechines, alt: "Bigode Chinês", description: "Botox" },
