@@ -93,10 +93,10 @@ const SectionQuemSomos = () => {
               Especialista em harmonização facial pela Instituição Santé
             </span>
             , onde desenvolveu habilidades avançadas que unem técnica e arte
-            para realçar a beleza de forma natural e personalizada. <span className="font-bold">CEO da
+            para realçar a beleza de forma natural e personalizada.<br></br> <span className="font-bold">CEO da
             Clínica Botolips</span> , um espaço dedicado à estética facial e corporal,
             que valoriza a confiança e o bem-estar dos seus clientes, oferecendo
-            tratamentos de excelência com uma abordagem humanizada. Além disso,
+            tratamentos de excelência com uma abordagem humanizada.<br></br> Além disso,
             atua como{" "}
             <span className="font-bold">professora e palestrante</span>,
             compartilhando seu vasto conhecimento sobre harmonização facial em
