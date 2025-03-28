@@ -84,7 +84,7 @@ const SectionQuemSomos = () => {
             transition={{ duration: 2, delay: 0.8 }}
             className=" text-azul md:text-xl font-thin"
           >
-            Cirurgiã dentista formada pela{" "}
+            Cirurgiã dentista formada pela renomada{" "}
             <span className="font-bold">
               Escola Baiana de Medicina e Saúde Pública
             </span>
