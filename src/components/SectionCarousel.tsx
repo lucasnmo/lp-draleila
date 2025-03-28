@@ -88,19 +88,19 @@ export function SectionCarousel() {
       alt: "Preenchimento Labial",
       description: "Preenchimento Labial",
     },
-    { src: preechimentoqueixo, alt: "Botox", description: "Botox" },
+    { src: preechimentoqueixo, alt: "Botox", description: "Preenchimento de olheira e bigode chinês" },
     {
       src: harmonizacao4,
       alt: "Harmonização Facial",
-      description: "Harmonização Facial",
+      description: "Bioestumulador de colágeno",
     },
     { src: espaco1, alt: "Espaço", description: "Botox" },
     { src: botox, alt: "Botox", description: "Preenchimento Labial" },
     { src: bigodechines, alt: "Bigode Chinês", description: "Botox" },
     { src: harmonizacao, alt: "Espaço", description: "Harmonização Facial" },
-    { src: botox3, alt: "Botox", description: "Harmonização Facial" },
+    { src: botox3, alt: "Botox", description: "Preenchimento de bigode chinês" },
     { src: botox2, alt: "Botox", description: "Botox" },
-    { src: bigodechines2, alt: "Bigode Chinês", description: "Botox" },
+    { src: bigodechines2, alt: "Bigode Chinês", description: "Bioestumulador de colágeno" },
   ];
 
   return (
