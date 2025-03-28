@@ -88,8 +88,20 @@ const SectionQuemSomos = () => {
             <span className="font-bold">
               Escola Baiana de Medicina e Saúde Pública
             </span>
-            . Especialista na área de Estética Dentária e Harmonização
-            Orofacial. CRO 18788
+            , com ampla expertise na área da saúde e estética.{" "}
+            <span className="font-bold">
+              Especialista em harmonização facial pela Instituição Santé
+            </span>
+            , onde desenvolveu habilidades avançadas que unem técnica e arte
+            para realçar a beleza de forma natural e personalizada. <span className="font-bold">CEO da
+            Clínica Botolips</span> , um espaço dedicado à estética facial e corporal,
+            que valoriza a confiança e o bem-estar dos seus clientes, oferecendo
+            tratamentos de excelência com uma abordagem humanizada. Além disso,
+            atua como{" "}
+            <span className="font-bold">professora e palestrante</span>,
+            compartilhando seu vasto conhecimento sobre harmonização facial em
+            cursos e eventos, inspirando e formando novos profissionais na área.
+            Uma trajetória marcada pela beleza e autoestima.
           </motion.p>
         </div>
       </motion.div>

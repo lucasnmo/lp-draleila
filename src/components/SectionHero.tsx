@@ -124,7 +124,7 @@ const SectionHero = () => {
           }}
           transition={{ duration: 1 }}
         >
-          Especialista Harmonização Facial e Corporal
+          Especialista Harmonização Facial
         </motion.h1>
 
         {/* Subtítulo 2 */}
