@@ -4,7 +4,8 @@ import "../public/styles/InstagramWidget.css"; // Certifique-se de que o caminho
 import { FaInstagram, FaFacebook, FaWhatsapp } from 'react-icons/fa'; // Importando os ícones do Instagram, Facebook e WhatsApp
 import "../app/globals.css";
 import Image from 'next/image'; // Importando o componente Image do Next.js
-import bgimage from "../public/assets/marmore.jpg";
+import bgimage from "../public/assets/marmore.webp";
+import { WHATSAPP_URL } from "../service/siteLinks";
 
 const InstagramWidget: React.FC = () => {
   useEffect(() => {
@@ -57,7 +58,7 @@ const InstagramWidget: React.FC = () => {
             <FaFacebook />
           </a>
           <a
-            href="https://wa.me/5571992297253" // Substitua pelo número correto
+            href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="text-azul text-shadow text-4xl hover:text-green-500 transition-colors"

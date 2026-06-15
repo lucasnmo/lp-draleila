@@ -1,48 +1,18 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { FaWhatsapp } from 'react-icons/fa'; // Ícone do WhatsApp
+import { FaWhatsapp } from "react-icons/fa";
+import { WHATSAPP_URL } from "./siteLinks";
 
 export default function WhatsAppButton() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  // Mostrar o botão após o scroll
-  const toggleVisibility = () => {
-    if (window.pageYOffset > 300) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
-  };
-
-  // Função que redireciona para o WhatsApp
-  const redirectToWhatsApp = () => {
-    const phoneNumber = "5571999541070"; // Coloque seu número de WhatsApp aqui
-    const message = "Olá, estou interessado em seus serviços!"; // Mensagem pré-definida
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(url, "_blank");
-  };
-
-  useEffect(() => {
-    window.addEventListener('scroll', toggleVisibility);
-
-    return () => {
-      window.removeEventListener('scroll', toggleVisibility);
-    };
-  }, []);
-
   return (
-    <>
-      {isVisible && (
-        <div className="fixed bottom-5 right-5 z-50">
-          <button
-            onClick={redirectToWhatsApp}
-            className="text-white p-3 rounded-full bg-zap shadow-lg hover:bg-azul-marinho2 transition-all duration-300"
-          >
-            <FaWhatsapp size={20} />
-          </button>
-        </div>
-      )}
-    </>
+    <a
+      href={WHATSAPP_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Agendar avaliação pelo WhatsApp"
+      className="fixed bottom-5 right-4 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-zap text-white shadow-[0_12px_35px_rgba(37,211,102,0.4)] transition hover:-translate-y-1 hover:scale-105 sm:bottom-6 sm:right-6 sm:h-16 sm:w-16"
+    >
+      <FaWhatsapp className="text-3xl" aria-hidden="true" />
+    </a>
   );
 }

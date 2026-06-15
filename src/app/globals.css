@@ -1,183 +1,229 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import '~slick-carousel/slick/slick.css';
-@import '~slick-carousel/slick/slick-theme.css';
-@import 'animate.css/animate.min.css';
-
-
-
 
 @font-face {
-  font-family: 'Helvetica';
-  src: url('../public/fonts/HelveticaNeueThin.otf') format('opentype');
-  font-weight: 100; /* Thin */
+  font-family: "Helvetica";
+  src: url("../public/fonts/HelveticaNeueRoman.otf") format("opentype");
+  font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-  font-family: 'Helvetica';
-  src: url('../public/fonts/HelveticaNeueThinItalic.otf') format('opentype');
-  font-weight: 100; /* Thin Italic */
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Helvetica';
-  src: url('../public/fonts/HelveticaNeueMedium.otf') format('opentype');
-  font-weight: 500; /* Medium */
+  font-family: "Helvetica";
+  src: url("../public/fonts/HelveticaNeueMedium.otf") format("opentype");
+  font-weight: 500;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-  font-family: 'Helvetica';
-  src: url('../public/fonts/HelveticaNeueBold.otf') format('opentype');
-  font-weight: 700; /* Bold */
+  font-family: "Helvetica";
+  src: url("../public/fonts/HelveticaNeueBold.otf") format("opentype");
+  font-weight: 700;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-  font-family: 'Helvetica';
-  src: url('../public/fonts/HelveticaNeueRoman.otf') format('opentype');
-  font-weight: 400; /* Regular (Roman) */
+  font-family: "Montserrat";
+  src: url("../public/fonts/Montserrat-Regular.ttf") format("truetype");
+  font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 
-@font-face {
-  font-family: 'Montserrat';
-  src: url('../public/fonts/Montserrat-Thin.ttf') format('truetype'); /* Corrigido de 'opentype' para 'truetype' */
-  font-weight: 100; /* Thin */
-  font-style: normal;
+:root {
+  --navy: #000066;
+  --blue: #00298f;
+  --gold: #d7a205;
+  --gold-soft: #edc87d;
+  --ink: #15152c;
+  --muted: #626276;
+  --surface: #f8fafc;
 }
 
-@font-face {
-  font-family: 'Montserrat';
-  src: url('../public/fonts/Montserrat-Regular.ttf') format('truetype'); /* Corrigido de 'opentype' para 'truetype' */
-  font-weight: 400; /* Regular */
-  font-style: normal;
+* {
+  box-sizing: border-box;
 }
-
-
-html {
-  font-family: 'Helvetica';
-}
-
-
-
-.text-shadow {
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4); /* Ajuste conforme necessário */
-}
-
-.text-shadow-light {
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15); /* Ajuste conforme necessário */
-}
-
-.text-shadow-heavy {
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* Ajuste conforme necessário */
-}
-
-
-
-
-
-
-
-
-/*NÃO ALTERNAR ENTRE O CURSOR DE SELECIONAR*/
-body {
-  cursor: default;
-}
-
-p, h1, h2, h3, h4, h5, h6, a, span {
-  cursor: default;
-}
-
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+  overflow-x: clip;
+}
+
+body {
+  margin: 0;
+  overflow-x: clip;
+  background: #ffffff;
+  color: var(--ink);
+  font-family: "Helvetica", Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  cursor: default;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
 }
 
 a {
   cursor: pointer;
 }
 
-/* Estilizando a barra de rolagem */
-::-webkit-scrollbar {
-  width: 12px; /* Largura da barra de rolagem */
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid rgba(215, 162, 5, 0.5);
+  outline-offset: 3px;
 }
 
-/* Fundo da barra de rolagem */
-::-webkit-scrollbar-track {
-  background: #FFFF; 
+img {
+  height: auto;
+  max-width: 100%;
 }
 
-/* Barra de rolagem */
-::-webkit-scrollbar-thumb {
-  background-color: #00298f; /* Cor verde-primário */
-  border-radius: 6px; /* Bordas arredondadas */
-  border: 2px solid #FFFF; /* Cor de fundo azul-marinho para criar um espaço ao redor da barra */
+::selection {
+  background: rgba(215, 162, 5, 0.25);
+  color: var(--navy);
 }
 
-/* Estilizando a barra de rolagem ao passar o mouse */
-::-webkit-scrollbar-thumb:hover {
-  background-color: #00298f ; /* Um tom ligeiramente mais escuro de verde ao passar o mouse */
+.site-section {
+  padding: 5rem 1.25rem;
 }
 
-
-//EFEITO BRILHO CURSOR
-
-.trail-container {
-  position: absolute;
-  top: 0;
-  left: 0;
+.section-shell {
   width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 9999;
+  max-width: 1200px;
+  margin-inline: auto;
 }
 
-.sparkle {
-  position: absolute;
-  width: 1.5px; /* Menor tamanho da faísca */
-  height: 1.5px; /* Menor tamanho da faísca */
-  background: #FFD700;
-  border-radius: 50%;
-  box-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700;
-  pointer-events: none;
-  animation: sparkle 0.5s ease-out forwards;
-  z-index: 500
+.section-eyebrow {
+  margin-bottom: 0.75rem;
+  color: var(--gold);
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
-@keyframes sparkle {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1.5); /* Menor escala final */
+.section-title {
+  color: var(--navy);
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+.section-copy {
+  color: var(--muted);
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  line-height: 1.75;
+}
+
+.marble-background {
+  background-color: #f6fbfd;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.86), rgba(250, 253, 255, 0.88)),
+    url("../public/assets/marmore2.webp");
+  background-position: center;
+  background-size: cover;
+}
+
+.marble-background-warm {
+  background-color: #fffdf8;
+  background-image:
+    linear-gradient(rgba(255, 253, 249, 0.91), rgba(255, 255, 255, 0.93)),
+    url("../public/assets/marmore.webp");
+  background-position: center;
+  background-size: cover;
+}
+
+.footer-marble {
+  background-color: #00004b;
+  background-image:
+    linear-gradient(rgba(0, 0, 75, 0.94), rgba(0, 0, 55, 0.97)),
+    url("../public/assets/marmore2.webp");
+  background-position: center;
+  background-size: cover;
+}
+
+.gold-divider {
+  width: min(180px, 40vw);
+  height: 1px;
+  margin: 1.5rem auto 0;
+  background: linear-gradient(90deg, transparent, var(--gold-soft), transparent);
+}
+
+.deferred-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}
+
+.horizontal-scroll {
+  scrollbar-width: none;
+  overscroll-behavior-inline: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.hero-reveal,
+.hero-image-reveal {
+  animation: hero-reveal 0.65s ease-out both;
+}
+
+.hero-image-reveal {
+  animation-delay: 0.08s;
+}
+
+@keyframes hero-reveal {
+  from {
     opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-
-
-
-//EFEITO DE ESCURECER OS LADOS
-.vignette {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0.85) 95%);
-  pointer-events: none;
-  z-index: 3;
+@media (max-width: 767px) {
+  .site-section {
+    padding: 4rem 1rem;
+  }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
 
+::-webkit-scrollbar {
+  width: 10px;
+}
 
-//SOMBRA NO TEXTO PRA DESTACAR DO BG
-.text-shadow-md {
-  text-shadow: 12px 12px 24px rgba(0, 0, 0, 1);
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 2px solid #ffffff;
+  border-radius: 999px;
+  background: var(--navy);
 }

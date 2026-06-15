@@ -1,112 +1,91 @@
-"use client";
-
-import { motion, useAnimation } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { useInView } from "react-intersection-observer";
-import draleila from "../public/assets/draleila2.jpg";
-import "animate.css";
-import "../app/globals.css";
+import {
+  FaChalkboardTeacher,
+  FaClinicMedical,
+  FaGraduationCap,
+  FaUserMd,
+} from "react-icons/fa";
+import draLeila from "../public/assets/draleila2.webp";
 
-const SectionQuemSomos = () => {
-  const controls = useAnimation();
-  const { ref, inView } = useInView({
-    triggerOnce: true, // Dispara apenas uma vez
-    threshold: 0.3,
-  });
-  const [hasAnimated, setHasAnimated] = useState(false);
+const credentials = [
+  {
+    icon: FaUserMd,
+    title: "Cirurgiã-dentista",
+    text: "Atuação dedicada à saúde, estética e ao cuidado individualizado.",
+  },
+  {
+    icon: FaGraduationCap,
+    title: "Formação",
+    text: "Escola Baiana de Medicina e Saúde Pública.",
+  },
+  {
+    icon: FaGraduationCap,
+    title: "Especialização",
+    text: "Harmonização facial pela Instituição Santé.",
+  },
+  {
+    icon: FaClinicMedical,
+    title: "CEO da Clínica Botolips",
+    text: "Espaço voltado à estética facial e corporal.",
+  },
+  {
+    icon: FaChalkboardTeacher,
+    title: "Professora e palestrante",
+    text: "Compartilha conhecimento em cursos e eventos profissionais.",
+  },
+];
 
-  useEffect(() => {
-    if (inView && !hasAnimated) {
-      controls.start("visible");
-      setHasAnimated(true); // Define que a animação já foi disparada
-    }
-  }, [inView, hasAnimated, controls]);
-
+export default function SectionQuemSomos() {
   return (
-    <section
-      ref={ref}
-      id="sobre"
-      className="relative text-white flex flex-col md:flex-row items-center justify-center overflow-hidden py-14 gap-4 bg-white"
-    >
-      {/* Linha no topo da seção */}
-      <div
-        className="absolute top-0 w-2/3 h-[1px] mx-auto mb-12"
-        style={{
-          background:
-            "linear-gradient(to right, transparent, #FFEBB5, #FFEBB5, transparent)",
-        }}
-      ></div>
-
-      <motion.div
-        className="flex justify-center items-center w-[300px] md:w-[425px] shadow-2xl border-2 border-azul-escuro overflow-hidden rounded-full"
-        initial={{ opacity: 0, scale: 0 }}
-        animate={controls}
-        variants={{
-          visible: { opacity: 1, scale: 1 },
-          hidden: { opacity: 0, scale: 0.8 },
-        }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
-      >
-        <div className="relative w-[500px] h-[400px] md:w-[65vh] md:h-[80vh] ">
-          <Image
-            src={draleila}
-            alt="Dra Leila Fidelis"
-            fill
-            className="object-cover"
-            priority={true}
-          />
+    <section id="sobre" className="deferred-section site-section marble-background-warm">
+      <div className="section-shell grid items-center gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
+        <div className="relative mx-auto w-full max-w-[470px]">
+          <div className="absolute -bottom-5 -left-5 h-full w-full rounded-[2rem] border border-dourado-claro/35" />
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-slate-100 shadow-[0_24px_70px_rgba(0,0,102,0.14)]">
+            <Image
+              src={draLeila}
+              alt="Dra. Leila Fidelis em seu ambiente profissional"
+              fill
+              quality={80}
+              placeholder="blur"
+              sizes="(max-width: 1024px) 90vw, 470px"
+              className="object-cover object-[54%_22%]"
+            />
+          </div>
         </div>
-      </motion.div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={controls}
-        variants={{
-          visible: { opacity: 1, y: 0 },
-          hidden: { opacity: 0, y: 50 },
-        }}
-        transition={{ duration: 2 }}
-        className="bg-opacity-60 bg-cinza-claro rounded-3xl p-6 w-full md:w-1/3 max-w-3xl text-left shadow-2xl"
-      >
-        <div className="text-shadow-light ">
-          <h1 className="font-bold text-3xl md:text-5xl mb-4 md:mb-2 text-azul-escuro">
-            Dra. Leila Fidelis
-          </h1>
-          <h2 className="text-xl md:text-2xl mb-6 text-azul-escuro">
-            Especialista em Harmonização Facial
-          </h2>
-          <motion.p
-            variants={{
-              visible: { opacity: 1, y: 0 },
-              hidden: { opacity: 0, y: 30 },
-            }}
-            transition={{ duration: 2, delay: 0.8 }}
-            className=" text-azul md:text-xl font-thin"
-          >
-            Cirurgiã dentista formada pela renomada{" "}
-            <span className="font-bold">
-              Escola Baiana de Medicina e Saúde Pública
-            </span>
-            , com ampla expertise na área da saúde e estética.{" "}
-            <span className="font-bold">
-              Especialista em harmonização facial pela Instituição Santé
-            </span>
-            , onde desenvolveu habilidades avançadas que unem técnica e arte
-            para realçar a beleza de forma natural e personalizada.<br></br> <span className="font-bold">CEO da
-            Clínica Botolips</span> , um espaço dedicado à estética facial e corporal,
-            que valoriza a confiança e o bem-estar dos seus clientes, oferecendo
-            tratamentos de excelência com uma abordagem humanizada.<br></br> Além disso,
-            atua como{" "}
-            <span className="font-bold">professora e palestrante</span>,
-            compartilhando seu vasto conhecimento sobre harmonização facial em
-            cursos e eventos, inspirando e formando novos profissionais na área.
-            Uma trajetória marcada pela beleza e autoestima.
-          </motion.p>
+        <div>
+          <p className="section-eyebrow">Quem somos</p>
+          <h2 className="section-title">Dra. Leila Fidelis</h2>
+          <p className="mt-3 text-xl font-medium text-azul sm:text-2xl">
+            Especialista em harmonização facial
+          </p>
+          <p className="section-copy mt-6 max-w-2xl">
+            Sua trajetória reúne formação, experiência clínica e ensino, com uma abordagem que valoriza técnica, segurança e atendimento humanizado.
+          </p>
+
+          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            {credentials.map(({ icon: Icon, title, text }, index) => (
+              <article
+                key={title}
+                className={`rounded-2xl border border-[#000066]/10 bg-white/85 p-5 shadow-[0_12px_35px_rgba(0,0,102,0.05)] backdrop-blur-sm ${
+                  index === credentials.length - 1 ? "sm:col-span-2" : ""
+                }`}
+              >
+                <div className="flex items-start gap-4">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-dourado-claro/15 text-dourado-claro">
+                    <Icon aria-hidden="true" />
+                  </span>
+                  <div>
+                    <h3 className="text-lg font-semibold text-azul-escuro">{title}</h3>
+                    <p className="mt-1 leading-6 text-[#66677a]">{text}</p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
-};
-
-export default SectionQuemSomos;
+}

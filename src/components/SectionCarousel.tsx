@@ -1,202 +1,137 @@
 "use client";
-import { useState } from "react";
+
 import Image, { StaticImageData } from "next/image";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import "../app/globals.css";
+import { useEffect, useState } from "react";
+import { FaExpandAlt, FaTimes } from "react-icons/fa";
+import resultOne from "../public/assets/carrossel/harmonizacao2.webp";
+import resultTwo from "../public/assets/carrossel/harmonizacao3.webp";
+import resultThree from "../public/assets/carrossel/botox.webp";
+import resultFour from "../public/assets/carrossel/botox2.webp";
+import resultFive from "../public/assets/carrossel/botox3.webp";
 
-// Imagens
-import preenchimento from "../public/assets/carrossel/preenchimento.jpg";
-import botox from "../public/assets/carrossel/preenchimento2.jpg";
-import preechimentoqueixo from "../public/assets/carrossel/harmonizacao1.jpg";
-import bigodechines from "../public/assets/carrossel/harmonizacao2.jpg";
-import botox2 from "../public/assets/carrossel/harmonizacao3.jpg";
-import bigodechines2 from "../public/assets/carrossel/botox.jpg";
-import botox3 from "../public/assets/carrossel/botox2.jpg";
-import espaco1 from "../public/assets/carrossel/botox3.jpg";
-import harmonizacao from "../public/assets/carrossel/harmonizacao.jpg";
-import harmonizacao4 from "../public/assets/carrossel/harmonizacao4.jpg";
+type ResultImage = {
+  src: StaticImageData;
+  alt: string;
+};
 
-export function SectionCarousel() {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.3,
-  });
+const results: ResultImage[] = [
+  {
+    src: resultOne,
+    alt: "Comparativo facial antes e depois de tratamento personalizado",
+  },
+  {
+    src: resultTwo,
+    alt: "Comparativo facial após tratamento de harmonização",
+  },
+  {
+    src: resultThree,
+    alt: "Comparativo facial de paciente após tratamento estético",
+  },
+  {
+    src: resultFour,
+    alt: "Comparativo de contorno facial antes e depois do tratamento",
+  },
+  {
+    src: resultFive,
+    alt: "Comparativo da região frontal após tratamento facial",
+  },
+];
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState<StaticImageData>(espaco1); // Definir tipo StaticImageData
+export default function SectionCarousel() {
+  const [selectedImage, setSelectedImage] = useState<ResultImage | null>(null);
 
-  const handleImageClick = (image: StaticImageData) => {
-    setSelectedImage(image); // Garantir que o tipo seja StaticImageData
-    setIsModalOpen(true);
-  };
+  useEffect(() => {
+    if (!selectedImage) return;
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSelectedImage(null);
+    };
 
-  const handleModalClick = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
-      handleCloseModal();
-    }
-  };
+    document.addEventListener("keydown", closeOnEscape);
+    document.body.style.overflow = "hidden";
 
-  const settings = {
-    centerMode: true,
-    centerPadding: "6px",
-    slidesToShow: 3,
-    autoplay: true,
-    autoplaySpeed: 2000,
-    infinite: true,
-    speed: 750,
-    slidesToScroll: 1,
-    arrows: false,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          centerMode: true,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-          centerMode: false,
-          spaceBetween: 16, // Adiciona espaço entre os slides
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          centerPadding: "0px",
-          centerMode: true,
-          spaceBetween: 16, // Espaço entre os slides
-        },
-      },
-    ],
-  };
-
-  const items: { src: StaticImageData; alt: string; description: string }[] = [
-    {
-      src: preenchimento,
-      alt: "Preenchimento Labial",
-      description: "Preenchimento Labial",
-    },
-    { src: preechimentoqueixo, alt: "Botox", description: "Preenchimento de olheira e bigode chinês" },
-    {
-      src: harmonizacao4,
-      alt: "Harmonização Facial",
-      description: "Bioestumulador de colágeno",
-    },
-    { src: espaco1, alt: "Espaço", description: "Botox" },
-    { src: botox, alt: "Botox", description: "Preenchimento Labial" },
-    { src: bigodechines, alt: "Bigode Chinês", description: "Botox" },
-    { src: harmonizacao, alt: "Espaço", description: "Harmonização Facial" },
-    { src: botox3, alt: "Botox", description: "Preenchimento de bigode chinês" },
-    { src: botox2, alt: "Botox", description: "Botox" },
-    { src: bigodechines2, alt: "Bigode Chinês", description: "Bioestumulador de colágeno" },
-  ];
+    return () => {
+      document.removeEventListener("keydown", closeOnEscape);
+      document.body.style.overflow = "";
+    };
+  }, [selectedImage]);
 
   return (
-    <section className="relative" id="carrossel">
-      <div
-        className="w-2/3 h-[2px] mx-auto mb-8"
-        style={{
-          background:
-            "linear-gradient(to right, transparent, #FFEBB5, #FFEBB5, #FFEBB5, #FFEBB5, #FFEBB5, transparent)",
-        }}
-      ></div>
-      <div ref={ref} className="py-8 px-4 md:px-8 relative overflow-hidden">
-        <motion.div
-          className="max-w-7xl mx-auto"
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          variants={{
-            hidden: { opacity: 0, y: 50 },
-            visible: { opacity: 1, y: 0 },
-          }}
-          transition={{ duration: 2, ease: "easeInOut" }}
-        >
-          <h1 className="text-center text-azul-escuro text-4xl mb-10 font-montserrat uppercase text-shadow-light">
-            RESULTADOS E ESPAÇO EXCLUSIVO
-          </h1>
-          <div className="mx-auto w-full sm:w-[90%] relative">
-            <Slider {...settings} className="gap-4">
-              {items.map((item, index) => (
-                <motion.div
-                  key={index}
-                  className="relative carousel-item mb-12"
-                  initial="hidden"
-                  animate={inView ? "visible" : "hidden"}
-                  variants={{
-                    hidden: { opacity: 0, scale: 0.8 },
-                    visible: { opacity: 1, scale: 1 },
-                  }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
-                >
-                  {/* Imagem */}
-                  <div className="relative mx-4 h-[350px] w-[350px] md:h-[350px] md:w-[350px] sm:h-[300px] sm:w-[300px] rounded-lg overflow-hidden border border-[#000066] shadow-xl">
-                    <Image
-                      src={item.src}
-                      alt={item.alt}
-                      layout="fill"
-                      objectFit="cover"
-                      className="rounded-lg cursor-pointer"
-                      onClick={() => handleImageClick(item.src)}
-                    />
-                  </div>
+    <section id="resultados" className="deferred-section site-section marble-background border-y border-[#000066]/5">
+      <div className="section-shell">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="section-eyebrow">Resultados e espaço exclusivo</p>
+          <h2 className="section-title">Técnica, cuidado e respeito à individualidade</h2>
+          <p className="section-copy mt-5">
+            Conheça alguns registros de tratamentos realizados com planejamento e acompanhamento profissional.
+          </p>
+          <div className="gold-divider" />
+        </div>
 
-                  {/* Descrição */}
-                  <div className="text-center mt-4">
-                    <p className="text-azul-escuro font-montserrat font-semibold text-lg">
-                      {item.description}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </Slider>
-          </div>
-        </motion.div>
+        <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2">
+          {results.map((item, index) => {
+            const layoutClass =
+              index === 0
+                ? "lg:col-span-2 lg:row-span-2"
+                : "lg:col-span-1";
+
+            return (
+              <button
+                key={item.src.src}
+                type="button"
+                onClick={() => setSelectedImage(item)}
+                className={`group relative min-h-[280px] overflow-hidden rounded-[1.25rem] bg-slate-100 text-left shadow-[0_14px_40px_rgba(0,0,102,0.1)] ${layoutClass}`}
+                aria-label="Ampliar imagem de resultado"
+              >
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  fill
+                  quality={78}
+                  placeholder="blur"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 40vw"
+                  className="object-cover transition duration-500 group-hover:scale-[1.025]"
+                />
+                <span className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-azul-escuro opacity-100 shadow-md transition sm:opacity-0 sm:group-hover:opacity-100">
+                  <FaExpandAlt aria-hidden="true" />
+                </span>
+              </button>
+            );
+          })}
+        </div>
       </div>
 
-      {isModalOpen && (
+      {selectedImage && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
-          onClick={handleModalClick}
+          className="fixed inset-0 z-[70] flex items-center justify-center bg-[#05051a]/90 p-4 backdrop-blur-sm"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Imagem de resultado ampliada"
+          onClick={() => setSelectedImage(null)}
         >
-          <div className="relative">
+          <div
+            className="relative h-[min(85vh,760px)] w-full max-w-3xl"
+            onClick={(event) => event.stopPropagation()}
+          >
             <Image
-              src={selectedImage}
-              alt="Imagem Expansiva"
-              width={800}
-              height={1066}
-              className="rounded-lg shadow-2xl max-w-[30vw] max-h-[85vh]"
+              src={selectedImage.src}
+              alt={selectedImage.alt}
+              fill
+              quality={82}
+              sizes="90vw"
+              className="rounded-2xl object-contain"
             />
             <button
-              onClick={handleCloseModal}
-              className="absolute top-0 right-0 p-4 text-white text-3xl font-bold"
+              type="button"
+              onClick={() => setSelectedImage(null)}
+              className="absolute right-2 top-2 flex h-11 w-11 items-center justify-center rounded-full bg-white text-azul-escuro shadow-lg"
+              aria-label="Fechar imagem"
             >
-              X
+              <FaTimes aria-hidden="true" />
             </button>
           </div>
         </div>
       )}
-
-      <div
-        className="w-2/3 h-[1px] mx-auto mb-0"
-        style={{
-          background:
-            "linear-gradient(to right, transparent, #FFEBB5, #FFEBB5, #FFEBB5, #FFEBB5, #FFEBB5, transparent)",
-        }}
-      ></div>
     </section>
   );
 }
-
-export default SectionCarousel;

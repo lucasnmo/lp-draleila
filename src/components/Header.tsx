@@ -1,119 +1,107 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { FaBars, FaTimes, FaWhatsapp } from "react-icons/fa";
 import logo from "../public/assets/logo.svg";
-import "../public/styles/Header.css";
+import { WHATSAPP_URL } from "../service/siteLinks";
 
-const Header = () => {
+const navigation = [
+  { label: "Tratamentos", href: "#tratamentos" },
+  { label: "Quem Somos", href: "#sobre" },
+  { label: "Localização", href: "#localizacao" },
+  { label: "Contato", href: "#contato" },
+];
+
+export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const headerLinks = document.querySelectorAll('a[href^="#"]');
-    headerLinks.forEach((link) => {
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
-        const targetId = (e.currentTarget as HTMLAnchorElement)
-          .getAttribute("href")
-          ?.substring(1);
-        const targetElement = targetId
-          ? document.getElementById(targetId)
-          : null;
-
-        if (targetElement) {
-          const offsetTop =
-            targetElement.getBoundingClientRect().top + window.scrollY;
-          const targetPosition =
-            offsetTop - (window.innerHeight - targetElement.offsetHeight);
-          window.scrollTo({
-            top: targetPosition,
-            behavior: "smooth",
-          });
-        }
-      });
-    });
-
-    const handleClickOutside = (event: MouseEvent) => {
-      const headerElement = document.querySelector(".header");
-      if (
-        menuOpen &&
-        headerElement &&
-        !headerElement.contains(event.target as Node)
-      ) {
-        setMenuOpen(false);
-      }
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
     };
 
-    document.addEventListener("mousedown", handleClickOutside, {
-      passive: true,
-    });
+    document.addEventListener("keydown", closeOnEscape);
+    document.body.style.overflow = menuOpen ? "hidden" : "";
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", closeOnEscape);
+      document.body.style.overflow = "";
     };
   }, [menuOpen]);
 
-  // Função para fechar o menu quando um item for clicado
-  const handleMenuItemClick = () => {
-    setMenuOpen(false);
-  };
-
   return (
-    <header className="header">
-      <div className="header-container flex items-center justify-between w-full sm:w-auto gap-4">
-        {/* Menu Mobile Button */}
-        <button
-          className="sm:hidden text-azul-escuro ml-4 font-montserrat uppercase"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          ☰
-        </button>
-        {/* Logo */}
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-[#000066]/10 bg-white/95 shadow-[0_8px_30px_rgba(0,0,102,0.06)] backdrop-blur-md">
+      <div className="mx-auto flex h-[76px] max-w-[1200px] items-center justify-between gap-2 px-3 sm:gap-4 sm:px-6">
         <a
-          href="https://www.instagram.com/botolips.estetica/"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="#inicio"
+          aria-label="Ir para o início"
+          className="relative z-10 block w-[118px] shrink-0 min-[420px]:w-[138px] sm:w-[185px]"
         >
           <Image
             src={logo}
-            alt="Company Logo"
-            className="header-logo sm:mr-8"
+            alt="Dra. Leila Fidelis, odontologia e harmonização facial"
+            className="h-auto w-full"
+            priority
           />
         </a>
 
-        {/* Navegação */}
-        <nav
-          className={`header-nav ${menuOpen ? "open" : "hidden"} sm:flex font-bold text-azul-escuro hover:text-azul font-montserrat uppercase text-shadow-light`}
-        >
-          <a href="#carrossel" onClick={handleMenuItemClick}>
-            Tratamentos
-          </a>
-          <a href="#sobre" onClick={handleMenuItemClick}>
-            Quem Somos
-          </a>
-          <a href="#localizacao" onClick={handleMenuItemClick}>
-            Localização
-          </a>
-          <a href="#rodape" onClick={handleMenuItemClick}>
-            Contato
-          </a>
+        <nav className="hidden items-center gap-7 lg:flex" aria-label="Navegação principal">
+          {navigation.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="font-montserrat text-xs font-semibold uppercase tracking-[0.08em] text-azul-escuro transition-colors hover:text-dourado-claro"
+            >
+              {item.label}
+            </a>
+          ))}
         </nav>
 
-        {/* Botão de Cadastro */}
-        <motion.a
-          href="https://api.whatsapp.com/send?phone=5571999541070&text=Ol%C3%A1,%20quero%20saber%20mais%20sobre%20os%20tratamentos!!%20"
-          target="_blank"
-          rel="noopener noreferrer"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          className="flex justify-center text-shadow items-center rounded-md font-bold font-montserrat uppercase header-button hover:border-azul text-white  bg-azul-escuro hover:bg-dourado-claro hover:text-azul px-2.5 py-2 sm:ml-8"
-        >
-          Entre em contato
-        </motion.a>
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-full bg-azul-escuro px-3 font-montserrat text-[0.62rem] font-semibold uppercase tracking-[0.06em] text-white shadow-lg shadow-[#000066]/15 transition hover:-translate-y-0.5 hover:bg-azul min-[420px]:px-4 min-[420px]:text-[0.68rem] sm:gap-2 sm:px-5 sm:text-xs"
+          >
+            <FaWhatsapp className="text-base" aria-hidden="true" />
+            <span className="hidden sm:inline">Entre em contato</span>
+            <span className="sm:hidden">Contato</span>
+          </a>
+
+          <button
+            type="button"
+            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#000066]/15 text-azul-escuro min-[420px]:h-11 min-[420px]:w-11 lg:hidden"
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            {menuOpen ? <FaTimes aria-hidden="true" /> : <FaBars aria-hidden="true" />}
+          </button>
+        </div>
       </div>
+
+      {menuOpen && (
+        <div
+          id="mobile-menu"
+          className="border-t border-[#000066]/10 bg-white px-4 pb-6 pt-3 shadow-xl lg:hidden"
+        >
+          <nav className="mx-auto flex max-w-[1200px] flex-col" aria-label="Navegação mobile">
+            {navigation.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={() => setMenuOpen(false)}
+                className="border-b border-[#000066]/10 px-2 py-4 font-montserrat text-sm font-semibold uppercase tracking-[0.08em] text-azul-escuro last:border-b-0"
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      )}
     </header>
   );
-};
-
-export default Header;
+}

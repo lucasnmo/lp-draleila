@@ -1,166 +1,118 @@
 "use client";
-import React, { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
-import "swiper/css";
-import Image, { StaticImageData } from "next/image"; // Importando StaticImageData
-import print1 from "../public/assets/carrossel_testimonials/test1.jpg";
-import print2 from "../public/assets/carrossel_testimonials/test2.jpg";
-import print3 from "../public/assets/carrossel_testimonials/test3.jpg";
-import print4 from "../public/assets/carrossel_testimonials/test4.jpg";
-import print5 from "../public/assets/carrossel_testimonials/test5.jpg";
-import print6 from "../public/assets/carrossel_testimonials/test6.jpg";
-import print7 from "../public/assets/carrossel_testimonials/test.jpg";
-import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import bgimage from "../public/assets/marmore2.webp";
 
-// Definindo as imagens do carrossel
-const prints = [print1, print2, print3, print4, print5, print6, print7];
+import Image, { StaticImageData } from "next/image";
+import { useEffect, useState } from "react";
+import { FaTimes, FaWhatsapp } from "react-icons/fa";
+import print7 from "../public/assets/carrossel_testimonials/test.webp";
+import print1 from "../public/assets/carrossel_testimonials/test1.webp";
+import print2 from "../public/assets/carrossel_testimonials/test2.webp";
+import print3 from "../public/assets/carrossel_testimonials/test3.webp";
+import print4 from "../public/assets/carrossel_testimonials/test4.webp";
+import print5 from "../public/assets/carrossel_testimonials/test5.webp";
+import print6 from "../public/assets/carrossel_testimonials/test6.webp";
+import { WHATSAPP_URL } from "../service/siteLinks";
 
-const TestimonialsCarousel = () => {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.3,
-  });
+const testimonials = [print1, print2, print3, print4, print5, print6, print7];
 
-  const { ref: buttonRef, inView: buttonInView } = useInView({
-    triggerOnce: true,
-    threshold: 0.5,
-  });
+export default function SectionTestimonials() {
+  const [selectedImage, setSelectedImage] = useState<StaticImageData | null>(null);
 
-  // Ajustando o tipo de selectedImage para aceitar apenas string ou StaticImport
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState<string | StaticImageData>(
-    prints[0]
-  ); // Inicializa com uma imagem válida
+  useEffect(() => {
+    if (!selectedImage) return;
 
-  const handleImageClick = (image: string | StaticImageData) => {
-    setSelectedImage(image);
-    setIsModalOpen(true);
-  };
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSelectedImage(null);
+    };
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setSelectedImage(prints[0]); // Voltar para a primeira imagem ao fechar
-  };
+    document.addEventListener("keydown", closeOnEscape);
+    document.body.style.overflow = "hidden";
 
-  // Função para fechar o modal ao clicar fora da imagem
-  const handleModalClick = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
-      handleCloseModal();
-    }
-  };
+    return () => {
+      document.removeEventListener("keydown", closeOnEscape);
+      document.body.style.overflow = "";
+    };
+  }, [selectedImage]);
 
   return (
-    <section
-      ref={ref}
-      className="text-white flex justify-center relative overflow-hidden"
-    >
-      <div
-        className="absolute top-0 left-0 w-full min-h-[100vh] bg-cover bg-center z-0"
-        style={{
-          backgroundImage: `linear-gradient(rgba(256, 256, 256, 0.5), rgba(256, 256, 256, 0.5)), url(${bgimage.src})`,
-          objectFit: "cover",
-          objectPosition: "center",
-        }}
-      ></div>
+    <section id="depoimentos" className="deferred-section site-section marble-background border-y border-[#000066]/5">
+      <div className="section-shell">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="section-eyebrow">Experiências reais</p>
+          <h2 className="section-title">Clientes satisfeitos</h2>
+          <p className="section-copy mt-5">
+            Relatos que refletem a atenção, o acolhimento e o cuidado presentes em cada atendimento.
+          </p>
+          <div className="gold-divider" />
+        </div>
 
-      <div className="w-[65%] mx-auto px-4 relative z-20 py-0">
-        <div
-          className="w-2/3 h-[2px] mx-auto mb-12"
-          style={{
-            background:
-              "linear-gradient(to right, transparent, #FFEBB5, #FFEBB5, transparent)",
-          }}
-        ></div>
-        <h2 className="text-4xl text-shadow-light text-center text-azul-escuro uppercase font-montserrat mb-8">
-          CLIENTES SATISFEITOS!
-        </h2>
-        <Swiper
-          modules={[Autoplay]}
-          autoplay={{ delay: 4200 }}
-          loop
-          speed={1000}
-          spaceBetween={30}
-          slidesPerView={1}
-          breakpoints={{
-            640: { slidesPerView: 1 },
-            768: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
-          }}
-          className="testimonial-swiper mb-12"
-        >
-          {prints.map((print, index) => (
-            <SwiperSlide key={index}>
-              <motion.div
-                className="flex justify-center items-center"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={
-                  inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
-                }
-                transition={{
-                  duration: 0.8,
-                  ease: "easeInOut",
-                  delay: index * 0.2,
-                }}
-              >
+        <div className="horizontal-scroll -mx-4 mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto px-4 pb-5 sm:-mx-6 sm:px-6 lg:mx-0 lg:grid lg:grid-cols-3 lg:overflow-visible lg:px-0 xl:grid-cols-4">
+          {testimonials.map((testimonial, index) => (
+            <button
+              key={testimonial.src}
+              type="button"
+              onClick={() => setSelectedImage(testimonial)}
+              aria-label={`Ampliar depoimento de cliente ${index + 1}`}
+              className="block w-[82vw] max-w-[360px] shrink-0 snap-center overflow-hidden rounded-[1.25rem] border border-[#000066]/10 bg-white p-2 shadow-[0_14px_40px_rgba(0,0,102,0.09)] sm:w-[46vw] lg:w-auto lg:max-w-none"
+            >
+              <div className="relative aspect-[3/4] overflow-hidden rounded-[0.95rem] bg-slate-100">
                 <Image
-                  src={print}
-                  alt={`Print ${index + 1}`}
-                  width={350}
-                  height={460}
-                  className="rounded-lg shadow-2xl border border-azul-escuro cursor-pointer"
-                  onClick={() => handleImageClick(print)}
+                  src={testimonial}
+                  alt={`Depoimento de cliente ${index + 1} sobre o atendimento`}
+                  fill
+                  quality={76}
+                  placeholder="blur"
+                  sizes="(max-width: 640px) 82vw, (max-width: 1024px) 46vw, 25vw"
+                  className="object-cover object-top"
                 />
-              </motion.div>
-            </SwiperSlide>
+              </div>
+            </button>
           ))}
-        </Swiper>
+        </div>
 
-        <div className="flex justify-center mt-8">
-          <motion.a
-            ref={buttonRef}
-            href="https://wa.me/5511999999999"
+        <div className="mt-10 text-center">
+          <a
+            href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="flex justify-center items-center h-14 py-3 px-6 shadow-lg bg-azul-escuro text-white border-2 border-azul-escuro rounded-lg text-xl font-montserrat font-semibold transition-colors mb-10 leading-none"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: buttonInView ? 1 : 0 }}
-            transition={{ duration: 0.2 }}
+            className="inline-flex min-h-14 items-center justify-center gap-3 rounded-full bg-azul-escuro px-7 font-montserrat text-sm font-semibold uppercase tracking-[0.07em] text-white shadow-lg shadow-[#000066]/15 transition hover:-translate-y-0.5 hover:bg-azul"
           >
-            AGENDE AGORA
-          </motion.a>
+            <FaWhatsapp className="text-xl" aria-hidden="true" />
+            Quero agendar minha avaliação
+          </a>
         </div>
       </div>
 
-      {/* Modal de Imagem Expandida */}
-      {isModalOpen && (
+      {selectedImage && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
-          onClick={handleModalClick} // Fechar o modal ao clicar fora
+          className="fixed inset-0 z-[70] flex items-center justify-center bg-[#05051a]/90 p-4 backdrop-blur-sm"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Depoimento ampliado"
+          onClick={() => setSelectedImage(null)}
         >
-          <div className="relative">
+          <div
+            className="relative h-[min(88vh,820px)] w-full max-w-xl"
+            onClick={(event) => event.stopPropagation()}
+          >
             <Image
               src={selectedImage}
-              alt="Imagem Expansiva"
-              width={800}
-              height={1066}
-              className="rounded-lg shadow-2xl max-w-[90vw] sm:max-w-[60vw] lg:max-w-[30vw] max-h-[85vh]" // Ajustando o tamanho da imagem com responsividade
+              alt="Depoimento de cliente ampliado"
+              fill
+              quality={82}
+              sizes="90vw"
+              className="rounded-2xl object-contain"
             />
             <button
-              onClick={handleCloseModal}
-              className="absolute top-0 right-0 p-4 text-white text-3xl font-bold"
+              type="button"
+              onClick={() => setSelectedImage(null)}
+              className="absolute right-2 top-2 flex h-11 w-11 items-center justify-center rounded-full bg-white text-azul-escuro shadow-lg"
+              aria-label="Fechar depoimento"
             >
-              &times;
+              <FaTimes aria-hidden="true" />
             </button>
           </div>
         </div>
       )}
     </section>
   );
-};
-
-export default TestimonialsCarousel;
+}

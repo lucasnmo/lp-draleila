@@ -1,48 +1,77 @@
-"use client";
-
-import React from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { FaFacebookF, FaInstagram, FaEnvelope, FaPhone } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaPhoneAlt, FaWhatsapp } from "react-icons/fa";
+import logo from "../public/assets/logowhite.webp";
+import {
+  FACEBOOK_URL,
+  INSTAGRAM_URL,
+  WHATSAPP_URL,
+} from "../service/siteLinks";
 
 export function Rodape() {
   return (
-    <footer className="bg-azul-escuro text-white py-6 font-helvetica" id="rodape">
-      <div className="max-w-7xl mx-auto px-4">
-        {/* Título e chamada para ação */}
-        <div className="text-center mb-6">
-          <h3 className="text-2xl font-bold mb-2">CONTATO</h3>
-          <p className="text-lg">Entre em contato e agende sua avaliação agora</p>
-        </div>
-
-        {/* Informações de contato */}
-        <div className="text-center mb-4">
-          
-          <p className="flex justify-center items-center gap-2">
-            <FaPhone /> <span className="font-semibold">Telefone:</span> +55 (71) 99954-1070
+    <footer className="footer-marble px-5 py-10 text-white" id="rodape">
+      <div className="mx-auto grid max-w-[1200px] gap-9 md:grid-cols-[1.3fr_0.7fr_0.8fr] md:items-center">
+        <div>
+          <Image
+            src={logo}
+            alt="Dra. Leila Fidelis, odontologia e harmonização facial"
+            quality={92}
+            className="h-auto w-full max-w-[390px]"
+          />
+          <p className="mt-4 max-w-md leading-7 text-white/65">
+            Harmonização facial com atendimento personalizado em Salvador.
           </p>
         </div>
 
-        {/* Redes sociais */}
-        <div className="flex justify-center space-x-6">
-          <Link
-            href="https://www.facebook.com/people/Botolips/100094007372479/"
+        <div>
+          <h2 className="font-montserrat text-xs font-semibold uppercase tracking-[0.16em] text-[#f0d99e]">Contato</h2>
+          <a
+            href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white hover:text-white"
-            aria-label="Facebook"
+            className="mt-4 flex items-center gap-3 text-white/80 transition hover:text-white"
           >
-            <FaFacebookF size={24} />
-          </Link>
-          <Link
-            href="https://www.instagram.com/botolips.estetica/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white hover:text-white"
-            aria-label="Instagram"
+            <FaWhatsapp aria-hidden="true" />
+            WhatsApp
+          </a>
+          <a
+            href="tel:+5571999541070"
+            className="mt-3 flex items-center gap-3 text-white/80 transition hover:text-white"
           >
-            <FaInstagram size={24} />
-          </Link>
+            <FaPhoneAlt aria-hidden="true" />
+            (71) 99954-1070
+          </a>
         </div>
+
+        <div>
+          <h2 className="font-montserrat text-xs font-semibold uppercase tracking-[0.16em] text-[#f0d99e]">Acompanhe</h2>
+          <div className="mt-4 flex gap-3">
+            <Link
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram da Dra. Leila Fidelis"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 transition hover:border-dourado-claro hover:text-dourado-claro"
+            >
+              <FaInstagram aria-hidden="true" />
+            </Link>
+            <Link
+              href={FACEBOOK_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook da Dra. Leila Fidelis"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 transition hover:border-dourado-claro hover:text-dourado-claro"
+            >
+              <FaFacebookF aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      <div className="mx-auto mt-9 max-w-[1200px] border-t border-white/10 pt-6 text-center text-sm text-white/45">
+        <p>© {new Date().getFullYear()} Dra. Leila Fidelis. Todos os direitos reservados.</p>
+        <p className="mt-2">Desenvolvido por Moreno Digital Studio</p>
       </div>
     </footer>
   );
